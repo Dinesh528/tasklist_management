@@ -6,6 +6,7 @@ import TaskForm from './components/TaskForm';
 import ViewTasks from './components/viewTask';
 import EditTask from './components/EditTask';
 import JokesSpot from './components/JokesSpot';
+import PrivateRoute from './components/Private Route/PrivateRoute';
 
 function App() {
   return (
@@ -14,10 +15,18 @@ function App() {
       
           <Route path="/login" element={<Login />} />
           <Route path='/home' element={<Home/>}/>
-          <Route path='/createTask' element={<TaskForm/>}/>
           <Route path='/viewtasks' element={<ViewTasks/>}/>
           <Route path='/jokesSpot' element={<JokesSpot/>}/>
           <Route path="/editTask/:taskId" element={<EditTask />} />
+          <Route element={<PrivateRoute />}>
+                        <Route path="/editTask/:taskId" element={<EditTask />} />
+                     
+                    </Route>
+                    
+          <Route element={<PrivateRoute />}>
+                        <Route path="/createTask" element={<TaskForm />} />
+                     
+                    </Route>
           <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </BrowserRouter>
